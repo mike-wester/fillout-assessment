@@ -19,7 +19,7 @@
   "description": "Coding Assessment for Fillout",
   "version": "1.0.0",
   "main": "index.ts",
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
     "dev": "nodemon -x node --loader ts-node/esm src/index.ts",
     "start": "node --loader ts-node/esm src/index.ts",
