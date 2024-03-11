@@ -2,6 +2,8 @@ import cors from "cors";
 import "dotenv/config";
 import express from "express";
 
+import { Payload } from "./types/Payload";
+
 const app = express();
 
 app.use(express.json());
@@ -17,7 +19,7 @@ app.get("/:formId/filteredResponses", async (req, res) => {
   try {
     const formId = req.params.formId    
     
-    const apiResponse = await fetch(
+    const payload = await fetch(
       'https://api.fillout.com/v1/api/forms/' + formId + '/submissions', {
         method: 'GET',
         headers: {
@@ -25,13 +27,14 @@ app.get("/:formId/filteredResponses", async (req, res) => {
         },
       }
     )
-    const apiResponseJson = await apiResponse.json()
+    
+    const apiResponseJson: Payload = await payload.json()
+    
+    res.send(apiResponseJson);
 
-    console.log(apiResponseJson)
-    res.send('Done – check console log')
   } catch (err) {
-    console.log(err)
-    res.status(500).send('Something went wrong')
+    console.log(err);
+    res.status(500).send('Something went wrong');
   }
 });
 

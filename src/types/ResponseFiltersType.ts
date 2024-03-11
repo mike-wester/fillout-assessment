@@ -1,2 +1,0 @@
-
-type ResponseFiltersType = ResponseFilter[];
